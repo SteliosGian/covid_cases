@@ -14,6 +14,8 @@ Some valid statements: <br>
     <li>"How many total cases are there in Brazil"</li>
 </ul>
 
+All dependencies are inside the Pipfile.lock file and can be installed via pipenv.
+
 ## Requirements
 <ul>
     <li>Microphone</li>
