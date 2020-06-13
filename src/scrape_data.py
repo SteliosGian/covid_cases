@@ -2,8 +2,6 @@ from operator import itemgetter
 from bs4 import BeautifulSoup
 import requests
 
-URL = 'https://www.worldometers.info/coronavirus/'
-
 
 class Data:
     """
@@ -18,23 +16,27 @@ class Data:
         Retrieves the data from the website
         :return: Dictionary with data
         """
-        source = requests.get(self.url).text
-        soup = BeautifulSoup(source, 'lxml')
-        page = soup.find('table',
-                         attrs={'class': 'table table-bordered table-hover main_table_countries',
-                                'id': 'main_table_countries_today'})
-        body = page.tbody
-        trs = body.findAll('tr')
-        columns = []
-        for tr in trs:
-            cols = tr.findAll('td')
-            cols = [x.text.strip() for x in cols]
-            columns.append(itemgetter(1, 2, 4)(cols))
-        names = ['name', 'total_cases', 'total_deaths']
-        countries = [dict(zip(names, d)) for d in columns[8:]]
-        total = {'name': columns[7][0], 'total_cases': columns[7][1], 'total_deaths': columns[7][2]}
-        self.data = {'total': total, 'country': countries}
-        return self.data
+        source = requests.get(self.url)
+
+        if source.ok:
+            soup = BeautifulSoup(source.text, 'lxml')
+            page = soup.find('table',
+                             attrs={'class': 'table table-bordered table-hover main_table_countries',
+                                    'id': 'main_table_countries_today'})
+            body = page.tbody
+            trs = body.findAll('tr')
+            columns = []
+            for tr in trs:
+                cols = tr.findAll('td')
+                cols = [x.text.strip() for x in cols]
+                columns.append(itemgetter(1, 2, 4)(cols))
+            names = ['name', 'total_cases', 'total_deaths']
+            countries = [dict(zip(names, d)) for d in columns[8:]]
+            total = {'name': columns[7][0], 'total_cases': columns[7][1], 'total_deaths': columns[7][2]}
+            self.data = {'total': total, 'country': countries}
+            return self.data
+        else:
+            return "Bad response!"
 
     def get_total_cases(self):
         """
