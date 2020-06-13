@@ -24,5 +24,5 @@ All dependencies are inside the Pipfile.lock file and can be installed via pipen
 ## To be added
 <ul>
     <li>Docker container</li>
-    <li>Tests</li>
+    <li>Tests &#9745; </li>
 </ul>
