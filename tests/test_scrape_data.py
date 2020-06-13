@@ -17,7 +17,7 @@ class TestScrapeData(unittest.TestCase):
         self.data = Data('https://www.worldometers.info/coronavirus/')
 
     def test_get_data(self):
-        print("Test get_data dictionary keys")
+        print("\nTest get_data dictionary keys")
 
         data_total = self.data.get_data()
         data_keys = tuple(data_total.keys())
@@ -32,22 +32,22 @@ class TestScrapeData(unittest.TestCase):
                               msg='Dictionary keys are not "name", "total_cases", and "total_deaths"')
 
     def test_get_total_cases(self):
-        print("Test if get_total_cases is an integer")
+        print("\nTest if get_total_cases is an integer")
         total_cases = self.data.get_total_cases()
         self.assertIsInstance(string_to_int(total_cases), int, msg="Total cases is not an integer")
 
     def test_get_total_deaths(self):
-        print("Test if get_total_deaths is an integer")
+        print("\nTest if get_total_deaths is an integer")
         total_deaths = self.data.get_total_deaths()
         self.assertIsInstance(string_to_int(total_deaths), int, msg="Total deaths is not an integer")
 
     def test_get_country_data(self):
-        print("Test if USA exist")
+        print("\nTest if USA exist")
         usa = self.data.get_country_data(country='usa')['name']
         self.assertEqual("USA", usa, msg="USA does not exist. Possible data corruption")
 
     def test_get_list_of_countries(self):
-        print("Test if get_list_of_countries is a list")
+        print("\nTest if get_list_of_countries is a list")
         countries_ls = self.data.get_list_of_countries()
         self.assertIsInstance(countries_ls, list, msg="List of countries is not of type list")
 
