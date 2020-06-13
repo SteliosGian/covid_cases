@@ -2,6 +2,8 @@
 
 This is a Python voice assistant that retrieves the total number of cases and deaths as well as the total number of cases and deaths per country.
 
+This repository is created mainly to test different technologies and frameworks for personal practice.
+
 ## Instructions
 
 Run the <b>main.py</b> file and talk to ask the number of cases or deaths. <br>
@@ -23,6 +25,7 @@ All dependencies are inside the Pipfile.lock file and can be installed via pipen
 
 ## To be added
 <ul>
-    <li>Docker container</li>
     <li>Tests &#9745; </li>
+    <li>Docker container</li>
+    <li>CI/CD</li>
 </ul>
